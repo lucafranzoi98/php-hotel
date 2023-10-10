@@ -38,14 +38,23 @@ $hotels = [
     ],
 ];
 
-
+// If checkbox is checked, filter only hotels with parking
 $parkingFilter = $_GET["parking"];
-
 if (isset($parkingFilter)){
    $hotels = array_filter($hotels, function ($var) {
    return ($var['parking'] == true);
    });
 }
+
+// If vote input is set, filter only hotels with an equal or higher vote of input
+$voteFilter = $_GET["vote"];
+if (isset($voteFilter)){
+   $hotels = array_filter($hotels, function ($var) {
+   $voteFilter = $_GET["vote"];
+   return ($var['vote'] >= $voteFilter);
+   });
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +74,8 @@ if (isset($parkingFilter)){
       <div class="me-3">
          <label class="form-check-label" for="parking">Parking</label>
          <input class="form-check-input" type="checkbox" name="parking" id="parking">
-      </div>      
+      </div>
+      <input type="number" class="form-control w-25 me-3" placeholder="Vote" name="vote">
       <button class="btn btn-primary" type="submit">Find</button>
    </form>
 
