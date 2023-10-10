@@ -48,31 +48,50 @@ $hotels = [
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
    <title>Hotel</title>
 </head>
-<body class="bg-dark text-white">
+<body class="bg-dark text-white px-3">
 
    <h1 class="text-center my-3">Hotels</h1>
-   <div class="row row-cols-5 mx-4">
-
-   <?php foreach ($hotels as $hotel) : ?>
-      <div class="col">
-         <div class="card h-100">
-            <div class="card-body">
-               <h5 class="card-title"><?= $hotel["name"] ?></h5>
-               <p class="card-text"><?= $hotel["description"] ?></p>
-               <p class="card-text">Parking:
-                  <?php if ($hotel["parking"] != true) {
-                     echo "NOT";
-                  }?>
-                  avaiable
-               </p>
-               <p class="card-text">Vote: <?= $hotel["vote"] ?></p>
-               <p class="card-text">Distance to center: <?= $hotel["distance_to_center"] ?> chilometers</p>
-            </div>
-         </div>
-      </div>
-   <?php endforeach ?>
-
-   </div>
+   <table class="table">
+      <thead>
+         <tr>
+            <th scope="col">Name</th>
+            <?php foreach ($hotels as $hotel) : ?>
+               <th scope="col"><?= $hotel["name"] ?></th>
+            <?php endforeach ?>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <th scope="row">Description</th>
+            <?php foreach ($hotels as $hotel) : ?>
+               <td><?= $hotel["description"] ?></td>
+            <?php endforeach ?>
+         </tr>
+         <tr>
+            <th scope="row">Parking</th>
+            <?php foreach ($hotels as $hotel) : ?>
+               <td>
+                  <?php if ($hotel["parking"]) {
+                        echo "true";
+                     } else {
+                        echo "false";
+                     }?>
+               </td>
+            <?php endforeach ?>
+         </tr>
+         <tr>
+            <th scope="row">Vote</th>
+            <?php foreach ($hotels as $hotel) : ?>
+               <td><?= $hotel["vote"] ?></td>
+            <?php endforeach ?>
+         </tr>
+         <tr>
+            <th scope="row">Dist</th>
+            <?php foreach ($hotels as $hotel) : ?>
+               <td><?= $hotel["distance_to_center"] ?> km</td>
+            <?php endforeach ?>
+         </tr>
+   </table>
    
 </body>
 </html>
