@@ -83,42 +83,29 @@ if (isset($voteFilter)){
       <thead>
          <tr>
             <th scope="col">Name</th>
-            <?php foreach ($hotels as $hotel) : ?>
-               <th scope="col"><?= $hotel["name"] ?></th>
-            <?php endforeach ?>
+            <th scope="col">Description</th>
+            <th scope="col">Parking</th>
+            <th scope="col">Vote</th>
+            <th scope="col">Distance</th>            
          </tr>
       </thead>
       <tbody>
+         <?php foreach ($hotels as $hotel) : ?>
          <tr>
-            <th scope="row">Description</th>
-            <?php foreach ($hotels as $hotel) : ?>
-               <td><?= $hotel["description"] ?></td>
-            <?php endforeach ?>
+            <th scope="row"><?= $hotel["name"] ?></th>
+            <td><?= $hotel["description"] ?></td>
+            <td>
+               <?php if ($hotel["parking"]) {
+                  echo "Yes";
+               } else {
+                  echo "No";
+               }
+               ?>
+            </td>
+            <td><?= $hotel["vote"] ?></td>
+            <td><?= $hotel["distance_to_center"] ?> km</td>
          </tr>
-         <tr>
-            <th scope="row">Parking</th>
-            <?php foreach ($hotels as $hotel) : ?>
-               <td>
-                  <?php if ($hotel["parking"]) {
-                        echo "true";
-                     } else {
-                        echo "false";
-                     }?>
-               </td>
-            <?php endforeach ?>
-         </tr>
-         <tr>
-            <th scope="row">Vote</th>
-            <?php foreach ($hotels as $hotel) : ?>
-               <td><?= $hotel["vote"] ?></td>
-            <?php endforeach ?>
-         </tr>
-         <tr>
-            <th scope="row">Dist</th>
-            <?php foreach ($hotels as $hotel) : ?>
-               <td><?= $hotel["distance_to_center"] ?> km</td>
-            <?php endforeach ?>
-         </tr>
+         <?php endforeach ?>
    </table>
    
 </body>
